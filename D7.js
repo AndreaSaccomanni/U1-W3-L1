@@ -70,16 +70,44 @@ console.log("La somma totale dei numeri nell array è: ", numbers1Sum);
 /* ESERCIZIO 6 (map)
   Scrivi una funzione che, dato un array di soli numeri e un numero n come parametri, ritorni un secondo array con tutti i valori del precedente incrementati di n
 */ console.log("_____Esercizio 6_____");
+
+const nArray = function (array, n) {
+  const nSum = array.map((num) => num + n);
+  return nSum;
+};
 const numbers2 = [1, 2, 3, 4, 5, 6];
+console.log(nArray(numbers2, 2));
 
 /* ESERCIZIO 7 (map)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
-*/
+*/ console.log("_____Esercizio 7_____");
+
+const stringArray = function (array) {
+  const newstringArr = array.map((string) => string.length);
+  return newstringArr;
+};
+
+let string1 = ["ciao", "come", "stai?"];
+console.log(stringArray(string1));
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
-*/
+*/ console.log("_____Esercizio 8_____");
+
+function createOddNumArray() {
+  let oddNumbers = [];
+
+  for (let i = 1; i <= 99; i++) {
+    if (i % 2 !== 0) {
+      oddNumbers.push(i);
+    }
+  }
+
+  return oddNumbers;
+}
+const oddNumbersArray = createOddNumArray();
+console.log(oddNumbersArray);
 
 /* Questo array di film verrà usato negli esercizi a seguire. Non modificarlo e scorri oltre per riprendere gli esercizi :) */
 const movies = [
@@ -185,23 +213,89 @@ const movies = [
 
 /* ESERCIZIO 9 (forEach)
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
-*/
+*/ console.log("_____Esercizio 9_____");
+const oldestMovie = function (array) {
+  //smallestElement verrà utilizzato per essere confontato con tutti gli altri elementi degli array e risulterà il più piccolo
+  let smallestElement = array[0];
+  array.forEach((film) => {
+    if (parseInt(film.Year) < parseInt(smallestElement.Year)) {
+      smallestElement = film;
+    }
+  });
+  return smallestElement;
+};
+console.log(oldestMovie(movies));
 
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
-*/
+*/ console.log("_____Esercizio 10_____");
+
+const totMovies = function (array) {
+  return array.length;
+};
+totFilm = totMovies(movies);
+console.log(totFilm);
 
 /* ESERCIZIO 11 (map)
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
-*/
+*/ console.log("_____Esercizio 11_____");
+const onlyTitle = function (array) {
+  let arrayOnlyTitle = [];
+  for (let i = 0; i < array.length; i++) {
+    let onlyTitle = array[i].Title;
+    //verifico se onlyTitle, quindi la prorpietà.Title di ogni oggetto presente nell'array esiste. Se esiste la mette nell'array vuoto arrayOnlyTitle
+    if (onlyTitle) {
+      arrayOnlyTitle.push(onlyTitle);
+    }
+  }
+  return arrayOnlyTitle;
+};
+let titleMovie = onlyTitle(movies);
+console.log("Con il ciclo for: ", titleMovie);
+
+const onlyTitle1 = function (array) {
+  return array.map(function (obj) {
+    // entra nell'array che fornirò dopo e in ogni elemento(ogni oggetto) prende la proprietà .Title
+    return obj.Title;
+  });
+};
+let titleMovie1 = onlyTitle(movies);
+console.log("con il metodo.map: ", titleMovie1);
 
 /* ESERCIZIO 12 (filter)
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
-*/
+*/ console.log("_____Esercizio 12_____");
+const only2000 = function (array) {
+  let array2000 = [];
+  for (let i = 0; i < array.length; i++) {
+    let OnlyFilm2000 = array[i].Year;
+    if (OnlyFilm2000 >= 2000) {
+      array2000.push(array[i]);
+    }
+  }
+  return array2000;
+};
+let year2000 = only2000(movies);
+console.log("con il ciclo for: ", year2000);
 
+const filterOnly2000 = function (array) {
+  return array.filter(function (obj) {
+    return obj.Year >= 2000;
+  });
+};
+let year2000_1 = filterOnly2000(movies);
+console.log("con il metodo filter: ", year2000_1);
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
-*/
+*/ console.log("_____Esercizio 13_____");
+
+const yearSum = function (array) {
+  return array.reduce(function (sumOfTheYear, film) {
+    return sumOfTheYear + parseInt(film.Year);
+  }, 0); //Se il primo elemento dell'array non è del tipo giusto (è una stringa e non un numero) da errore. quindi assegno un valore di default a sumOfTheYear
+};
+const totYear = yearSum(movies);
+console.log(totYear);
 
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
