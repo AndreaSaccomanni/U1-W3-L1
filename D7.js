@@ -299,8 +299,20 @@ console.log(totYear);
 
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
-*/
+*/ console.log("_____Esercizio 14_____");
+const findMovie = function (array, imdbID) {
+  const movie = array.find((movie) => movie.imdbID === imdbID);
+  return { title: movie.Title, year: movie.Year };
+};
+console.log(findMovie(movies, "tt4154796"));
 
 /* ESERCIZIO 15 (findIndex)
   Scrivi una funzione per ottenere dall'array fornito l'indice del primo film uscito nell'anno fornito come parametro.
-*/
+*/ console.log("_____Esercizio 15_____");
+
+const movieIndexFromYear = function (array, year) {
+  const movieIndex = array.findIndex((movie) => movie.Year === year);
+  return movieIndex;
+};
+const year = "2005";
+console.log(`l indice del primo film uscito nel ${year} è: `, movieIndexFromYear(movies, "2005"));
