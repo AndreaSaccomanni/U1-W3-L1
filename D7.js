@@ -23,7 +23,6 @@ const arrayRandom = () => {
     }
   }
   return array;
-  025;
 };
 const array = arrayRandom();
 console.log(array);
